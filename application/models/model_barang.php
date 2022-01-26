@@ -4,7 +4,9 @@ class Model_barang extends CI_Model
 {
 	public function tampil_barang()
 	{
-		return $this->db->get('tb_barang');
+		$this->db->select("b.*,k.ket as kategori");
+		$this->db->join("tb_kategori k", "k.kode=b.kategori", "left");
+		return $this->db->get('tb_barang b');
 	}
 	public function getkategori()
 	{
