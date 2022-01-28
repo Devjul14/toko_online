@@ -1,7 +1,9 @@
 <div class="container-fluid">
   <!-- Content Row -->
   <div class="row">
-
+    <!-- <?php echo "<pre>";
+          print_r($s->el_stok);
+          echo "</pre>"; ?> -->
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-primary shadow h-100 py-2">
