@@ -17,10 +17,10 @@ class Dashboard_Admin extends CI_Controller
 	}
 	public function index()
 	{
-		$data['s'] = $this->model_dashboard->getstok();
+		$data['stok'] = $this->model_dashboard->getkategori();
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		$this->load->view('templates_admin/footer');
 	}
 }

@@ -1,14 +1,18 @@
 <?php
 class Model_Dashboard extends CI_Model
 {
-    function getstok()
+    public function getkategori()
     {
-        $this->db->select("kategori,stok,
-        CASE WHEN kategori = 'el' THEN stok END AS el_stok,
-        CASE WHEN kategori = 'pp' THEN stok END AS pp_stok,
-        CASE WHEN kategori = 'pa' THEN stok END AS pa_stok,
-        CASE WHEN kategori = 'ol' THEN stok END AS ol_stok");
-        $q = $this->db->get("tb_barang");
-        return $q->row();
+
+        $this->db->select('
+        SUM(case when kategori="el" then stok else 0 end) as el,
+        SUM(case when kategori="pp" then stok else 0 end) as pp,
+        SUM(case when kategori="pw" then stok else 0 end) as pw,
+        SUM(case when kategori="ol" then stok else 0 end) as ol,
+        SUM(case when kategori="pa" then stok else 0 end) as pa,
+        ', FALSE);
+        $this->db->from('tb_barang');
+        $data = $this->db->get()->row_array();
+        return $data;
     }
 }
