@@ -1,19 +1,33 @@
-
 <?php
 
-use chriskacerguis\RestServer\RestController;
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Apibarang extends RestController
+require APPPATH . '/libraries/REST_Controller.php';
+
+use Restserver\Libraries\REST_Controller;
+
+class Apibarang extends REST_Controller
 {
-    public function __construct()
+
+    // function __construct($config = 'rest')
+    // {
+    //     parent::__construct($config);
+    //     $this->load->database();
+    // }
+
+    //Menampilkan data kontak
+    function index_get()
     {
-        parent::__construct();
+        $id = $this->get('id_brg');
+        if ($id == '') {
+            $brg = $this->db->get('tb_barang')->result();
+        } else {
+            $this->db->where('id_brg', $id);
+            $brg = $this->db->get('tb_barang')->result();
+        }
+        $this->response($brg, 200);
     }
-    public function index_get()
-    {
-        $this->response([
-            'status' => true,
-            'data' => 'ini test api'
-        ], RestController::HTTP_OK);
-    }
+
+
+    //Masukan function selanjutnya disini
 }
