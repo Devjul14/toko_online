@@ -27,7 +27,7 @@
 				</div>
 				<div class="form-group">
 					<label>NO Tlp</label>
-					<input type="text" name="notlp" placeholder="No Tlp Anda" class="form-control">
+					<input type="text" name="no_hp" placeholder="No Tlp Anda" class="form-control">
 				</div>
 				<div class="form-group">
 					<label>Jasa Pengiriman</label>
