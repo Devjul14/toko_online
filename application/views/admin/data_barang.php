@@ -1,5 +1,17 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
+	var mywindow;
+
+	function openCenteredWindow(url) {
+		var width = 1000;
+		var height = 650;
+		var left = parseInt((screen.availWidth / 2) - (width / 2));
+		var top = parseInt((screen.availHeight / 2) - (height / 2));
+		var windowFeatures = "width=" + width + ",height=" + height +
+			",status,resizable,left=" + left + ",top=" + top +
+			",screenX=" + left + ",screenY=" + top + ",scrollbars";
+		mywindow = window.open(url, "subWind", windowFeatures);
+	}
 	$(document).ready(function() {
 		const flashData = $(".flash-data").data("flashdata");
 		if (flashData) {
@@ -14,6 +26,22 @@
 			window.location = url;
 			return false;
 		});
+		$('.wa').click(function(){
+			$(".modal-whatsapp").modal("show");
+		});
+		$(".send_wa").click(function() {
+            var phone = $("[name='nohp']").val();
+            if (phone == "") {
+                alert("No. HP belum terisi");
+            } else {
+                
+                var text = "Selamat datang di Toko Online.%0A";
+                text += "Ini link Laporan Data Barang%0A";
+                text += "<?php echo site_url('admin/data_barang/cetak_brg'); ?>";
+                var url = "https://api.whatsapp.com/send?phone=" + phone + "&text=" + text;
+                openCenteredWindow(url)
+            }
+        });
 		$('.delete').click(function() {
 			var id = $(this).attr('data');
 			var url = "<?php echo site_url('admin/data_barang/hapus'); ?>/" + id;
@@ -36,9 +64,10 @@
 </script>
 <div class="container-fluid">
 	<div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('message'); ?>"></div>
-	<button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#tambah_barang">
+	<button class="btn btn-sm btn-primary mb-3" data-toggle="modal" data-target="#tambah_barang">
 		<i class="fas fa-plus fa-sm"></i>Tambah</button>
 	<button type="button" class="cetak btn btn-sm btn-warning mb-3"><i class="fas fa-print fa-sm"></i></button>
+	<button type="button" class="wa btn btn-sm btn-success mb-3">Send Wa</button>
 
 	<table class="table table-border">
 		<tr>
@@ -53,7 +82,7 @@
 		<?php
 		$no = 1;
 		foreach ($barang as $brg) : ?>
-			<tr>
+			<tr id='data'>
 				<td><?php echo $no++ ?></td>
 				<td><?php echo $brg->nama_brg ?></td>
 				<td><?php echo $brg->keterangan ?></td>
@@ -124,3 +153,34 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal modal-whatsapp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Input Nomor Hp</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+					<div class="form-group">
+						<select class="form-control" name="nohp">
+							<?php
+							foreach ($u->result() as $key) {
+								
+								echo "<option value=" . $key->no_hp . ">" . $key->nama . "</option>";
+							}
+							?>
+						</select>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button class="send_wa btn btn-success">Send</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+

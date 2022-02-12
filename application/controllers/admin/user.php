@@ -22,6 +22,10 @@ class User extends CI_Controller
 		$data['q'] 	  = $this->Muser->getuser();
 		$this->load->view('templates_admin/template',$data);
 	}
+	public function simpan_nowa()
+	{
+        $this->Muser->simpan_nowa();
+    }
 	
 }
 ?>

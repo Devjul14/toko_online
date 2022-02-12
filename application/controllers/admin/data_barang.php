@@ -17,6 +17,7 @@ class Data_barang extends CI_Controller
 	{
 		$data['barang'] = $this->model_barang->tampil_barang()->result();
 		$data['k'] = $this->model_barang->getkategori();
+		$data['u'] = $this->model_barang->getuser();
 		$data["title"] 		  = "Barang";
 		$data["title_header"] = "Data Barang";
 		$data["content"]      = "admin/data_barang";

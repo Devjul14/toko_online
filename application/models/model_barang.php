@@ -12,6 +12,10 @@ class Model_barang extends CI_Model
 	{
 		return $this->db->get('tb_kategori');
 	}
+	public function getuser()
+	{
+		return $this->db->get('tb_user');
+	}
 	public function tambah_barang1($data, $table)
 	{
 		$this->db->insert($table, $data);
