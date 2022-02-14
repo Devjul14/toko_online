@@ -75,15 +75,14 @@
     </div>
   </div>
 
-  <!-- Bar Chart -->
-
-  <div class="card shadow mb-4">
+  <!-- Bar Chart JS -->
+  <div class="card shadow col-md-6 mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
     </div>
     <div class="card-body">
-      <div class="chart-bar">
-        <canvas id="myBarChart"></canvas>
+      <div>
+        <canvas id="myChart"></canvas>
       </div>
       <hr>
       Styling for the bar chart can be found in the
@@ -91,6 +90,37 @@
     </div>
   </div>
 
+
   <!-- Content Row -->
 
 </div>
+<script>
+  const labels = [
+    'Pakaian Anak',
+    'Pakaian Wanita',
+    'Pakaian Pria',
+    'Elektronik',
+    'Olahraga',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: ['#b19cd9', '#ffd1dc', '#fdfd96', '#77dd77', '#aec6cf'],
+      // borderColor: 'rgb(255, 99, 132)',
+      data: [0, 4, 5, 2, 20, 30],
+    }]
+  };
+
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {}
+  };
+
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
