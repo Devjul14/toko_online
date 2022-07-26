@@ -76,7 +76,7 @@
   </div>
 
   <!-- Bar Chart JS -->
-  <div class="card shadow col-md-6 mb-4">
+  <div class="card shadow col-md-6 mb-4" height="50px">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
     </div>

@@ -1,5 +1,3 @@
-
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -28,7 +26,7 @@
 
 
       <!-- Nav Item - Pages Collapse Menu -->
-      
+
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url('admin/data_barang') ?>">
@@ -72,7 +70,7 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
@@ -81,7 +79,7 @@
                 </button>
               </div>
             </div>
-          </form>
+          </form> -->
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -107,20 +105,22 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            
-        <div class="topbar-divider d-none d-sm-block"></div>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-           <ul class="nav navbar-nav navbar-right">
-                 <?php if($this->session->userdata('username')){ ?>
-                    <li><div>Selamat Datang <?php echo $this->session->userdata('username') ?></div></li>
-                     <li class="ml-2"><?php echo anchor('auth/logout','Logout') ?></li>
-                   <?php }else{ ?>
-                  <li><?php echo anchor('auth/login','Login') ?></li>
-                <?php } ?>
+            <ul class="nav navbar-nav navbar-right">
+              <?php if ($this->session->userdata('username')) { ?>
+                <li>
+                  <div>Selamat Datang <?php echo $this->session->userdata('username') ?></div>
+                </li>
+                <li class="ml-2"><?php echo anchor('auth/logout', 'Logout') ?></li>
+              <?php } else { ?>
+                <li><?php echo anchor('auth/login', 'Login') ?></li>
+              <?php } ?>
 
 
-              </ul>
+            </ul>
 
           </ul>
 
