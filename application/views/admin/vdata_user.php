@@ -1,38 +1,38 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-$(document).ready(function(){
-	const flashData = $(".flash-data").data("flashdata");
-	if (flashData) {
-	Swal.fire(
-		'Data',
-		'Berhasil' + flashData,
-		'success'
-	);
-	}
-	$('.cetak').click(function(){
-		var url = "<?php echo site_url('admin/data_barang/cetak_brg'); ?>";
-		window.location = url;
-		return false;
+	$(document).ready(function() {
+		const flashData = $(".flash-data").data("flashdata");
+		if (flashData) {
+			Swal.fire(
+				'Data',
+				'Berhasil' + flashData,
+				'success'
+			);
+		}
+		$('.cetak').click(function() {
+			var url = "<?php echo site_url('admin/data_barang/cetak_brg'); ?>";
+			window.location = url;
+			return false;
+		});
+		$('.delete').click(function() {
+			var id = $(this).attr('data');
+			var url = "<?php echo site_url('admin/data_barang/hapus'); ?>/" + id;
+			Swal.fire({
+				title: 'Anda Yakin?',
+				text: "Data Akan Dihapus",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location = url;
+					return false;
+				}
+			})
+		});
 	});
-	$('.delete').click(function(){
-		var id = $(this).attr('data');
-		var url = "<?php echo site_url('admin/data_barang/hapus'); ?>/" + id;
-		Swal.fire({
-			title: 'Anda Yakin?',
-			text: "Data Akan Dihapus",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes'
-	}).then((result) => {
-	if (result.isConfirmed) {
-		window.location = url;
-		return false;
-	}
-	})
-});
-});
 </script>
 <div class="container-fluid">
 	<div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('message'); ?>"></div>
@@ -45,8 +45,8 @@ $(document).ready(function(){
 			<th>NO</th>
 			<th>NAMA</th>
 			<th>USERNAME</th>
-			<th>BAGIAN</th>
-			<th>PHOTO</th>
+			<!-- <th>BAGIAN</th>
+			<th>PHOTO</th> -->
 			<th colspan="3">AKSI</th>
 		</tr>
 		<?php
@@ -56,11 +56,11 @@ $(document).ready(function(){
 				<td><?php echo $no++ ?></td>
 				<td><?php echo $row->nama ?></td>
 				<td><?php echo $row->username ?></td>
-				<td><?php echo $row->bagian ?></td>
-				<td><?php echo $row->photo ?></td>
+				<!-- <td><?php echo $row->bagian ?></td>
+				<td><?php echo $row->photo ?></td> -->
 				<!-- <td><?php echo $row->stok ?></td> -->
 				<td><?php echo anchor('admin/data_barang/edit/'  . $row->id, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
-				<td><button type="button" data="<?php echo $row->id?>" class="delete btn btn-sm btn-danger"><i class="fas fa-trash fa-sm"></i></button></td>
+				<td><button type="button" data="<?php echo $row->id ?>" class="delete btn btn-sm btn-danger"><i class="fas fa-trash fa-sm"></i></button></td>
 			<?php endforeach; ?>
 	</table>
 </div>
